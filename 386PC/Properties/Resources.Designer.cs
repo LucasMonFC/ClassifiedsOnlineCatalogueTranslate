@@ -79,5 +79,15 @@ namespace _386PC.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] FLOPPY_DEL {
+            get {
+                object obj = ResourceManager.GetObject("FLOPPY_DEL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

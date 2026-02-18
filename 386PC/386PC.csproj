@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="Baud.cs" />
     <Compile Include="Cat.cs" />
+    <Compile Include="Del.cs" />
     <Compile Include="I386.cs" />
     <Compile Include="I386API.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

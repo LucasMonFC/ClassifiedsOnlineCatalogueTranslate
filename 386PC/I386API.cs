@@ -15,6 +15,7 @@ public class I386API : Mod {
 
     private Cat cat;
     private Baud baud;
+    private Del del;
 
     public override void ModSetup() {
         SetupFunction(Setup.OnLoad, Mod_OnLoad);
@@ -34,6 +35,9 @@ public class I386API : Mod {
 
         baud = new Baud();
         baud.load();
+
+        del = new Del();
+        del.load();
     }
     private void Mod_OnSave() {
         cat.save();
