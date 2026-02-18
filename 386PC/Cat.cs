@@ -95,9 +95,11 @@ public class Cat {
 
         Texture2D t = new Texture2D(2048, 2048);
         t.LoadImage(_386PC.Properties.Resources.FLOPPY_CAT);
+
         I386Command c = new I386Command(enter, update);
         i386.AddCommand("cat", c);
-        I386Diskette d = i386.CreateDiskette(new Vector3(-9.823606f, 0.2121708f, 13.98593f), new Vector3(270f, 271f, 0f));
+
+        I386Diskette d = i386.CreateDiskette(new Vector3(-9.853718f, 0.2164819f, 13.99311f), new Vector3(275.3004f, 90.23483f, 179.6319f));
         d.LoadExe("cat", 320);
         d.SetTexture(t);
         

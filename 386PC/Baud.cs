@@ -16,7 +16,7 @@ public class Baud {
         I386Command c1 = new I386Command(enter, null);
         i386.AddCommand("baud", c1);
 
-        I386Diskette d1 = i386.CreateDiskette(new Vector3(-9.808896f, 0.2169641f, 13.98685f), new Vector3(270f, 271f, 0f));
+        I386Diskette d1 = i386.CreateDiskette(new Vector3(-9.9434f, 0.2114929f, 13.99708f), new Vector3(270f, 271.8562f, 0f));
         d1.LoadExe("baud", 320);
         d1.SetTexture(t1);
     }

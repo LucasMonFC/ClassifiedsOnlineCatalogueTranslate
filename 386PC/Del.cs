@@ -13,8 +13,8 @@ public class Del {
 
         I386Command c = new I386Command(enter, null);
         i386.AddCommand("del", c);
-
-        I386Diskette d = i386.CreateDiskette(new Vector3(-9.848896f, 0.2180641f, 13.98685f), new Vector3(270f, 271f, 0f));
+        
+        I386Diskette d = i386.CreateDiskette(new Vector3(-9.900195f, 0.2155392f, 13.99451f), new Vector3(274.0774f, 90.10452f, 180.4562f));
         d.LoadExe("del", 320);
         d.SetTexture(t);
     }
