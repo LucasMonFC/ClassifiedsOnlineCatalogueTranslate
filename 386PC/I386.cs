@@ -35,6 +35,8 @@ public class I386Diskette {
     internal FsmString _tag_pos;
     
     internal GameObject _gameObject;
+    internal MeshRenderer _renderer;
+    internal MeshFilter _filter;
 
     public GameObject gameObject {
         get => _gameObject;
@@ -62,15 +64,11 @@ public class I386Diskette {
     }
 
     public void SetTexture(Texture2D texture) {
-        Transform mesh = gameObject.transform.Find("mesh");
-        if (mesh == null) {
+        if (_renderer == null) {
             return;
         }
-        MeshRenderer renderer = mesh.GetComponent<MeshRenderer>();
-        if (renderer == null) {
-            return;
-        }
-        renderer.materials[1].mainTexture = texture;
+
+        _renderer.materials[1].mainTexture = texture;
     }
 }
 
@@ -112,6 +110,10 @@ public class I386 {
     FsmBool playerComputer;
     FsmBool modemCord;
     FsmBool phonePaid;
+    
+    Texture2D floppyBlankTexture;
+    Material floppyBlankMaterial;
+    GameObject floppyPrefab;
 
     internal I386() {
         commands = new Dictionary<string, I386Command>();
@@ -163,6 +165,17 @@ public class I386 {
         GameObject phoneBill1_go = GameObject.Find("Systems/PhoneBills1");
         PlayMakerFSM phoneBill1_fsm = phoneBill1_go.GetPlayMaker("Data");
         phonePaid = phoneBill1_fsm.GetVariable<FsmBool>("PhonePaid");
+
+        floppyBlankTexture = new Texture2D(2048, 2048);
+        floppyBlankTexture.LoadImage(_386PC.Properties.Resources.FLOPPY_BLANK);
+        floppyBlankTexture.name = "FLOPPY_IMAGE";
+
+        floppyPrefab = GameObject.Find("diskette(itemx)");
+        MeshRenderer renderer = floppyPrefab.transform.Find("mesh").GetComponent<MeshRenderer>();
+        Material[] mats = renderer.materials;
+        floppyBlankMaterial = new Material(mats[1]);
+        floppyBlankMaterial.name = "FLOPPY_IMAGE";
+        floppyBlankMaterial.mainTexture = floppyBlankTexture;
     }
 
     /// <summary>
@@ -201,12 +214,8 @@ public class I386 {
     /// </summary>
     public I386Diskette CreateDiskette(Vector3 defaultPosition = default, Vector3 defaultEulerAngles = default) {
         I386Diskette diskette = new I386Diskette();
-        GameObject prefab = GameObject.Find("diskette(itemx)");
-        if (prefab == null) {
-            return null;
-        }
-
-        GameObject g = GameObject.Instantiate(prefab);
+        
+        GameObject g = GameObject.Instantiate(floppyPrefab);
         g.name = "diskette(itemx)";
         g.transform.position = defaultPosition;
         g.transform.eulerAngles = defaultEulerAngles;
@@ -238,6 +247,40 @@ public class I386 {
 
         FsmState s3 = fsm.GetState("State 4");
         (s3.Actions[1] as Exists).saveFile = saveFile;
+
+        Transform mesh = diskette.gameObject.transform.Find("mesh");
+        if (mesh != null) {
+            diskette._renderer = mesh.GetComponent<MeshRenderer>();
+            diskette._filter = mesh.GetComponent<MeshFilter>();
+            if (diskette._renderer != null && diskette._filter != null) {
+
+                Mesh original = diskette._filter.sharedMesh;
+                Mesh m = GameObject.Instantiate(original);
+                diskette._filter.mesh = m;
+
+                int[] triangles = m.GetTriangles(1);
+                Vector2[] uvs = m.uv;
+
+                Rect atlasRect = new Rect(0.3125f, 0.125f, 0.0625f, 0.0625f);
+
+                HashSet<int> usedVerts = new HashSet<int>(triangles);
+
+                foreach (int vertIndex in usedVerts) {
+                    Vector2 uv = uvs[vertIndex];
+
+                    uv.x = (uv.x - atlasRect.x) / atlasRect.width;
+                    uv.y = (uv.y - atlasRect.y) / atlasRect.height;
+
+                    uvs[vertIndex] = uv;
+                }
+
+                m.uv = uvs;
+
+                Material[] mats = diskette._renderer.materials;                
+                mats[1] = floppyBlankMaterial;
+                diskette._renderer.materials = mats;
+            }
+        }
 
         return diskette;
     }

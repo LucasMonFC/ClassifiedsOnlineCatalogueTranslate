@@ -121,6 +121,9 @@
   <data name="FLOPPY_BAUD" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FLOPPY_BAUD.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="FLOPPY_BLANK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FLOPPY_BLANK.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="FLOPPY_CAT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FLOPPY_CAT.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

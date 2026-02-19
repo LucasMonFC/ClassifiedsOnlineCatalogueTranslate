@@ -73,6 +73,16 @@ namespace _386PC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] FLOPPY_BLANK {
+            get {
+                object obj = ResourceManager.GetObject("FLOPPY_BLANK", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] FLOPPY_CAT {
             get {
                 object obj = ResourceManager.GetObject("FLOPPY_CAT", resourceCulture);
