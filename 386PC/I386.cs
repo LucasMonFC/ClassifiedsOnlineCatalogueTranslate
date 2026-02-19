@@ -374,12 +374,6 @@ public class I386 {
         if (argv.Length > 0) {
             exeString.Value = argv[0];
         }
-
-        /*argv = commandString.Value.Split(' ');
-        if (commands.TryGetValue(argv[0], out currentCommand)) {
-            ModConsole.Log($"[I386] Command {commandString.Value} Exists");
-            commandFsm.SendEvent("LOAD");
-        }*/
     }
     private void onFindCommand() {
         argv = commandString.Value.Split(' ');
