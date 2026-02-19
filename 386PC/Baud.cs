@@ -5,20 +5,25 @@ using static I386PC.I386API;
 namespace I386PC;
 
 public class Baud {
+    public Texture2D texture;
+    public I386Command command;
+    public I386Diskette diskette;
+
     readonly float[] s = new float[] {
         300, 600, 1200, 2400, 4800, 9600,
     };
  
     public void load() {
-        Texture2D t1 = new Texture2D(2048, 2048);
-        t1.LoadImage(_386PC.Properties.Resources.FLOPPY_BAUD);
+        texture = new Texture2D(2048, 2048);
+        texture.LoadImage(_386PC.Properties.Resources.FLOPPY_BAUD);
+        texture.name = "FLOPPY_BAUD";
 
-        I386Command c1 = new I386Command(enter, null);
-        i386.AddCommand("baud", c1);
+        command = new I386Command(enter, null);
+        i386.AddCommand("baud", command);
 
-        I386Diskette d1 = i386.CreateDiskette(new Vector3(-9.9434f, 0.2114929f, 13.99708f), new Vector3(270f, 271.8562f, 0f));
-        d1.LoadExe("baud", 320);
-        d1.SetTexture(t1);
+        diskette = i386.CreateDiskette(new Vector3(-9.9434f, 0.2114929f, 13.99708f), new Vector3(270f, 271.8562f, 0f));
+        diskette.LoadExe("baud", 320);
+        diskette.SetTexture(texture);
     }
 
     private bool enter() {

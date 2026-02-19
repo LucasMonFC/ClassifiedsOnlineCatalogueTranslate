@@ -6,17 +6,21 @@ using static I386PC.I386API;
 namespace I386PC;
 
 public class Del {
+    public Texture2D texture;
+    public I386Command command;
+    public I386Diskette diskette;
 
     public void load() {
-        Texture2D t = new Texture2D(2048, 2048);
-        t.LoadImage(_386PC.Properties.Resources.FLOPPY_DEL);
+        texture = new Texture2D(2048, 2048);
+        texture.LoadImage(_386PC.Properties.Resources.FLOPPY_DEL);
+        texture.name = "FLOPPY_DEL";
 
-        I386Command c = new I386Command(enter, null);
-        i386.AddCommand("del", c);
+        command = new I386Command(enter, null);
+        i386.AddCommand("del", command);
         
-        I386Diskette d = i386.CreateDiskette(new Vector3(-9.900195f, 0.2155392f, 13.99451f), new Vector3(274.0774f, 90.10452f, 180.4562f));
-        d.LoadExe("del", 320);
-        d.SetTexture(t);
+        diskette = i386.CreateDiskette(new Vector3(-9.900195f, 0.2155392f, 13.99451f), new Vector3(274.0774f, 90.10452f, 180.4562f));
+        diskette.LoadExe("del", 320);
+        diskette.SetTexture(texture);
     }
 
     private bool enter() {

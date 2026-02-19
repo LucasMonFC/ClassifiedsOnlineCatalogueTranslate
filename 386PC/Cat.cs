@@ -47,6 +47,10 @@ public enum OrderType {
 }
 
 public class Cat {
+    public Texture2D texture;
+    public I386Command command;
+    public I386Diskette diskette;
+
     int ordersIndex = 0;
     Transform phone_numbers;
     PlayMakerFSM order_spawner_fsm;
@@ -93,15 +97,16 @@ public class Cat {
             }
         }
 
-        Texture2D t = new Texture2D(2048, 2048);
-        t.LoadImage(_386PC.Properties.Resources.FLOPPY_CAT);
+        texture = new Texture2D(2048, 2048);
+        texture.LoadImage(_386PC.Properties.Resources.FLOPPY_CAT);
+        texture.name = "FLOPPY_CAT";
 
-        I386Command c = new I386Command(enter, update);
-        i386.AddCommand("cat", c);
+        command = new I386Command(enter, update);
+        i386.AddCommand("cat", command);
 
-        I386Diskette d = i386.CreateDiskette(new Vector3(-9.853718f, 0.2164819f, 13.99311f), new Vector3(275.3004f, 90.23483f, 179.6319f));
-        d.LoadExe("cat", 320);
-        d.SetTexture(t);
+        diskette = i386.CreateDiskette(new Vector3(-9.853718f, 0.2164819f, 13.99311f), new Vector3(275.3004f, 90.23483f, 179.6319f));
+        diskette.LoadExe("cat", 320);
+        diskette.SetTexture(texture);
         
         error = false;
         newCatalogue = false;
