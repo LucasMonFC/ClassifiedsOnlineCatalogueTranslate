@@ -200,11 +200,9 @@ public class I386 {
     /// <param name="command">The command</param>
     public void AddCommand(string name, I386Command command) {
         if (commands.ContainsKey(name)) {
-            ModConsole.Log($"[I386] Command {name} Modified");
             commands[name] = command;
         }
         else {
-            ModConsole.Log($"[I386] Command {name} Added");
             commands.Add(name, command);
         }
     }
@@ -353,8 +351,6 @@ public class I386 {
     }
 
     private void exitCommand() {
-        ModConsole.Log($"[I386] Command {commandString.Value} Finished");
-        //commandFsm.SendEvent("CLOSE");
         commandFsm.SendEvent("FINISHED");
         currentCommand = null;
     }
@@ -378,7 +374,6 @@ public class I386 {
     private void onFindCommand() {
         argv = commandString.Value.Split(' ');
         if (commands.TryGetValue(argv[0], out currentCommand)) {
-            ModConsole.Log($"[I386] Command {commandString.Value} Started");
             commandFsm.SendEvent("CUSTOM");
         }
     }
