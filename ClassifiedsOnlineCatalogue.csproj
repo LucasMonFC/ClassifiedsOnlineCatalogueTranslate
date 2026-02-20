@@ -7,8 +7,8 @@
     <ProjectGuid>{503D2259-460C-0868-F843-83EFC64839B1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>I386API</RootNamespace>
-    <AssemblyName>386PC</AssemblyName>
+    <RootNamespace>ClassifiedsOnlineCatalogue</RootNamespace>
+    <AssemblyName>ClassifiedsOnlineCatalogue</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
@@ -48,10 +48,18 @@
     <PlatformTarget>x64</PlatformTarget>
     <LangVersion>13</LangVersion>
     <ErrorReport>prompt</ErrorReport>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="386PC, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>F:\SteamLibrary\steamapps\common\My Winter Car\Mods\386PC.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>F:\SteamLibrary\steamapps\common\My Summer Car\mysummercar_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="UnityEngine">
@@ -68,17 +76,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Source\ClassifiedsOnlineCatalogue\Cat.cs" />
-    <Compile Include="Source\ClassifiedsOnlineCatalogue\Baud.cs" />
-    <Compile Include="Source\ClassifiedsOnlineCatalogue\Del.cs" />
-    <Compile Include="Source\I386API\I386.cs" />
-    <Compile Include="Source\I386API\I386API.cs" />
+    <Compile Include="ClassifiedsOnlineCatalogue.cs" />
+    <Compile Include="ClassifiedsOnlineCatalogue\Cat.cs" />
+    <Compile Include="ClassifiedsOnlineCatalogue\Baud.cs" />
+    <Compile Include="ClassifiedsOnlineCatalogue\Del.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ClassifiedsOnlineCatalogue\OrderList.cs" />
+    <Compile Include="ClassifiedsOnlineCatalogue\OrderPart.cs" />
+    <Compile Include="ClassifiedsOnlineCatalogue\OrderState.cs" />
+    <Compile Include="ClassifiedsOnlineCatalogue\OrderType.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

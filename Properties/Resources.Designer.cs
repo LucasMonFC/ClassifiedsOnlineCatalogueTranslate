@@ -8,8 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace I386API {
-    using System;    
+namespace ClassifiedsOnlineCatalogue.Properties {
+    using System;
+    
     
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
@@ -38,7 +39,7 @@ namespace I386API {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("I386API.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ClassifiedsOnlineCatalogue.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -65,16 +66,6 @@ namespace I386API {
         public static byte[] FLOPPY_BAUD {
             get {
                 object obj = ResourceManager.GetObject("FLOPPY_BAUD", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] FLOPPY_BLANK {
-            get {
-                object obj = ResourceManager.GetObject("FLOPPY_BLANK", resourceCulture);
                 return ((byte[])(obj));
             }
         }
