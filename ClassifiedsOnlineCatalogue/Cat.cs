@@ -447,13 +447,7 @@ internal class Cat {
 
         // Attempt to locate translations file; do not spam console on normal load
         if (!File.Exists(file)) {
-            try {
-                Directory.CreateDirectory(configDir);
-            }
-            catch {
-                // ignore
-            }
-            WriteDefaultTranslationsFile(file);
+
             return;
         }
 
