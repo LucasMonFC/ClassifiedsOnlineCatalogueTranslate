@@ -17,17 +17,17 @@ public class ClassifiedsOnlineCatalogue : Mod {
     private Del del;
 
     public override void ModSetup() {
-        // minimal startup logs
-        if (!ModLoader.IsModPresent("I386API")) {
+
+		SetupFunction(Setup.OnLoad, Mod_OnLoad);
+		SetupFunction(Setup.OnSave, Mod_OnSave);
+	}
+	private void Mod_OnLoad() {
+		if (!ModLoader.IsModPresent("I386API")) {
             ModConsole.Error("[ClassifiedsOnlineCatalogue] I386 API required!");
             ModUI.ShowMessage("I386 API not installed.\nI386 API required!", Name);
             return;
         }
 
-        SetupFunction(Setup.OnLoad, Mod_OnLoad);
-        SetupFunction(Setup.OnSave, Mod_OnSave);
-    }
-    private void Mod_OnLoad() {
         instance = this;
         cat = new Cat();
         cat.load();
